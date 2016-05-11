@@ -355,38 +355,44 @@ int main(void) {
 
 	off();
 
-	char name[] = { 'r', 'a', 'f', 'a', 'l' };
+
+	char name[] = "Rafal";
 	int nameInMorseCode[15];
 	morse_createNameInMorseCode(name, 15, nameInMorseCode);
 
-	for (int i = 0; i < 15; i++) {
 
-		switch (nameInMorseCode[i]) {
-		case SHORT:
-			shortSignal();
-			delay(1000000);
-			off();
-			delay(1000000);
-			break;
 
-		case LONG:
-			longSignal();
-			delay(3000000);
-			off();
-			delay(2000000);
-			break;
-
-		default:
-			break;
-		}
-
-	}
 
 	// Force the counter to be placed into memory
 	volatile static int i = 0;
 	// Enter an infinite loop, just incrementing a counter
 	while (1) {
 		i++;
+
+
+		for (int i = 0; i < 15; i++) {
+
+			switch (nameInMorseCode[i]) {
+			case SHORT:
+				shortSignal();
+				delay(1000000);
+				off();
+				delay(1000000);
+				break;
+
+			case LONG:
+				longSignal();
+				delay(3000000);
+				off();
+				delay(2000000);
+				break;
+
+			default:
+				break;
+			}
+
+		}
+		delay(5000000);  //end of name
 	}
 	return 0;
 }
